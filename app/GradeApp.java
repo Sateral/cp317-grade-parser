@@ -6,7 +6,7 @@ import implementation.io.CourseFileParser;
 import implementation.io.CsvWriter;
 import implementation.io.NameFileParser;
 import implementation.service.StudentAssembler;
-import implementation.service.WeightedGradeCalculator;
+import implementation.service.GradeCalculator;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -23,7 +23,7 @@ public class GradeApp {
 
     new StudentAssembler().buildStudents(students, records);
 
-    var calc = new WeightedGradeCalculator();
+    var calc = new GradeCalculator();
     students.forEach(s -> 
       s.getCourseRecords().forEach(r ->
         r.finalGrade(calc)));
