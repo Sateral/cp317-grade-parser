@@ -6,7 +6,6 @@ import implementation.io.CourseFileParser;
 import implementation.io.CsvWriter;
 import implementation.io.NameFileParser;
 import implementation.service.StudentAssembler;
-import implementation.service.GradeCalculator;
 
 import java.nio.file.Path;
 import java.util.List;
@@ -21,13 +20,10 @@ public class GradeApp {
     List<Student> students = new NameFileParser().parse(namesFilePath);
     List<CourseRecord> records = new CourseFileParser().parse(courseFilePath);
 
+    // Merge students with their course records
     new StudentAssembler().buildStudents(students, records);
 
-    var calc = new GradeCalculator();
-    students.forEach(s -> 
-      s.getCourseRecords().forEach(r ->
-        r.finalGrade(calc)));
-
+    // Create the CSV
     new CsvWriter().write(outputFilePath, students);
 
     System.out.println("Grades calculated and written to " + outputFilePath);
