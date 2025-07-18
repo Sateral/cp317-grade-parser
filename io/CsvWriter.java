@@ -1,5 +1,6 @@
 package implementation.io;
 
+import implementation.domain.CourseRecord;
 import implementation.domain.Student;
 import implementation.service.GradeCalculator;
 
@@ -25,18 +26,21 @@ public class CsvWriter {
 
     // Write to CSV file
     try (var writer = Files.newBufferedWriter(outputPath)) {
-      writer.write("Student ID,Student Name,Course Code,Final Grade (test 1,2,3-3x20%, final exam 40%)\n");
+      writer.write("Student ID,Student Name,Course Code,Final Grade\n");
       writer.newLine();
 
       GradeCalculator calculator = new GradeCalculator();
       for (Student student : sortedStudents) {
-        String line = String.format("%d,%s,%s,%.2f\n",
-            student.getStudentId(),
-            student.getName(),
-            student.getCourseCode(),
-            calculator.calculateFinalGrade(student));
-        writer.write(line);
-        writer.newLine();
+    	for (CourseRecord record : student.getCourseRecords()) {
+    		double finalGrade = calculator.calculateFinalGrade(record.getTests(), record.getFinalExam());
+    		String line = String.format("%s,%s,%s,%.2f\n",
+    				student.getStudentId(),
+    				student.getName(),
+    				record.getCourseCode(),
+    				finalGrade);
+    		writer.write(line);
+    		writer.newLine();
+    	}
       }
     }
   }
