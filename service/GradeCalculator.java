@@ -4,9 +4,18 @@ import implementation.util.Constants;
 
 public class GradeCalculator {
   public double calculateFinalGrade(double[] tests, double finalExam) {
-    // TODO: do some validation on the inputs
+    // Check that params are valid
+    if (tests == null || tests.length != Constants.NUM_TESTS) {
+      throw new IllegalArgumentException("Must provide exactly 3 grades.");
+    }
 
-    return (tests[0] + tests[1] + tests[2]) * Constants.TEST_WEIGHT +
-           finalExam * Constants.FINAL_EXAM_WEIGHT;
+    double weightedTests = 0;
+    for (double test : tests) {
+      weightedTests += test * Constants.TEST_WEIGHT;
+    }
+
+    double weightedFinal = finalExam * Constants.FINAL_EXAM_WEIGHT;
+
+    return weightedTests + weightedFinal;
   }
 }
