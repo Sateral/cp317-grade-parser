@@ -1,8 +1,6 @@
 package implementation.io;
 
-import implementation.domain.Student;
 import implementation.domain.CourseRecord;
-import implementation.io.constants.CONSTANTS;
 import implementation.util.Constants;
 
 import java.util.List;
@@ -38,7 +36,7 @@ public class CourseFileParser implements FileParser<CourseRecord> {
         String studentId = data[0].trim();
         String courseCode = data[1].trim();
 
-        String[] tests = new double[Constants.NUM_TESTS];
+        double[] tests = new double[Constants.NUM_TESTS];
         for (int i = 0; i < Constants.NUM_TESTS; i++) {
           try {
             tests[i] = Double.parseDouble(data[i + 2].trim());
@@ -54,9 +52,9 @@ public class CourseFileParser implements FileParser<CourseRecord> {
           throw new IllegalArgumentException("Invalid final exam format at line " + line + ": " + lineContent);
         }
 
-        // Validate student ID and name
-        if (studentId.isEmpty() || name.isEmpty()) {
-          throw new IllegalArgumentException("Invalid student ID or name at line " + line + ": " + lineContent);
+        // Validate student ID and course code
+        if (studentId.isEmpty() || courseCode.isEmpty()) {
+          throw new IllegalArgumentException("Invalid student ID or course code at line " + line + ": " + lineContent);
         }
 
         courseRecords.add(new CourseRecord(studentId, courseCode, tests, finalExam));
