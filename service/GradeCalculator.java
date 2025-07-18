@@ -14,7 +14,7 @@ public class GradeCalculator {
       weightedTests += test * Constants.TEST_WEIGHT;
     }
 
-    double weightedFinal = finalExam * Constants.FINAL_EXAM_WEIGHT;
+    double weightedFinal = finalExam * Constants.FINAL_WEIGHT;
 
     return weightedTests + weightedFinal;
   }
