@@ -20,7 +20,7 @@ public class GradeApp {
 
     if (!Files.isReadable(namesFilePath) || !Files.isReadable(courseFilePath)) {
     	throw new FileNotFoundException(
-    			"Error: NameFile.txt or CourseFile.txt is missing or unreadable.")
+    			"Error: NameFile.txt or CourseFile.txt is missing or unreadable.");
     }
 
     // Parse names and course records
