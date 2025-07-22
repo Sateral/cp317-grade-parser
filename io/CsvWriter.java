@@ -33,7 +33,7 @@ public class CsvWriter {
       for (Student student : sortedStudents) {
     	for (CourseRecord record : student.getCourseRecords()) {
     		double finalGrade = calculator.calculateFinalGrade(record.getTests(), record.getFinalExam());
-    		String line = String.format("%s,%s,%s,%.2f\n",
+    		String line = String.format("%s,%s,%s,%.2f",
     				student.getStudentId(),
     				student.getName(),
     				record.getCourseCode(),
