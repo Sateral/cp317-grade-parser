@@ -26,7 +26,7 @@ public class CsvWriter {
 
     // Write to CSV file
     try (var writer = Files.newBufferedWriter(outputPath)) {
-      writer.write("Student ID,Student Name,Course Code,Final Grade\n");
+      writer.write("Student ID,Student Name,Course Code,Final Grade");
       writer.newLine();
 
       GradeCalculator calculator = new GradeCalculator();
