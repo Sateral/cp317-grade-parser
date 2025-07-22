@@ -1,7 +1,7 @@
 package implementation.domain;
 
 import implementation.service.GradeCalculator;
-import util.Constants;
+import implementation.util.Constants;
 
 public class CourseRecord {
   private final String studentId;
