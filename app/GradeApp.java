@@ -7,6 +7,8 @@ import implementation.io.CsvWriter;
 import implementation.io.NameFileParser;
 import implementation.service.StudentAssembler;
 
+import java.io.FileNotFoundException;
+import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
@@ -15,6 +17,11 @@ public class GradeApp {
     Path namesFilePath = Path.of("NameFile.txt");
     Path courseFilePath = Path.of("CourseFile.txt");
     Path outputFilePath = Path.of("output.csv");
+
+    if (!Files.isReadable(namesFilePath) || !Files.isReadable(courseFilePath)) {
+    	throw new FileNotFoundException(
+    			"Error: NameFile.txt or CourseFile.txt is missing or unreadable.")
+    }
 
     // Parse names and course records
     List<Student> students = new NameFileParser().parse(namesFilePath);
