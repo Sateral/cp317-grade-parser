@@ -127,17 +127,13 @@ public class GradeCalculatorTest {
         try {
             double[] tests = {-10, 90, 88};
             double finalExam = 85;
-            double expected = (-10 + 90 + 88) * Constants.TEST_WEIGHT
-                            + 85 * Constants.FINAL_WEIGHT;
-            double actual = calc.calculateFinalGrade(tests, finalExam);
-
-            if (closeEnough(expected, actual)) {
-                passed++;  System.out.println("PASS testNegativeGrades");
-            } else {
-                System.out.println("FAIL testNegativeGrades: got " + actual);
-            }
-        } catch (Exception e) {
-            System.out.println("FAIL testNegativeGrades: threw " + e);
+            calc.calculateFinalGrade(tests, finalExam);
+            System.out.println("FAIL testNegativeGrades: no exception was thrown");
+        } catch (IllegalArgumentException expected) {
+    		passed++;
+    		System.out.println("PASS testNegativeGrades");
+    	} catch (Exception e) {
+            System.out.println("FAIL testNegativeGrades: wrong exception " + e);
         }
     }
 
@@ -146,17 +142,13 @@ public class GradeCalculatorTest {
         try {
             double[] tests = {110, 105, 108};
             double finalExam = 102;
-            double expected = (110 + 105 + 108) * Constants.TEST_WEIGHT
-                            + 102 * Constants.FINAL_WEIGHT;
-            double actual = calc.calculateFinalGrade(tests, finalExam);
-
-            if (closeEnough(expected, actual)) {
-                passed++;  System.out.println("PASS testHighGrades");
-            } else {
-                System.out.println("FAIL testHighGrades: got " + actual);
-            }
-        } catch (Exception e) {
-            System.out.println("FAIL testHighGrades: threw " + e);
+            calc.calculateFinalGrade(tests, finalExam);
+            System.out.println("FAIL testNegativeGrades: no exception was thrown");
+        } catch (IllegalArgumentException expected) {
+    		passed++;
+    		System.out.println("PASS testNegativeGrades");
+    	} catch (Exception e) {
+            System.out.println("FAIL testNegativeGrades: wrong exception " + e);
         }
     }
 
