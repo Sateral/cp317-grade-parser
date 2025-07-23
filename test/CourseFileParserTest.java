@@ -68,18 +68,18 @@ public class CourseFileParserTest {
         }
     }
 
-    private void testBadLineFormat() {
+    private void testInvalidFileFormat() {
         total++;
         try {
         	
-            Path badFile = Path.of("test/resources/bad_courses.txt");
+            Path badFile = Path.of("test/resources/invalid_courses.txt");
             parser.parse(badFile);
-            System.out.println("FAIL testBadLineFormat: no exception was thrown");
+            System.out.println("FAIL testInvalidFileFormat: no exception was thrown");
         } catch (IllegalArgumentException expected) {
             passed++;
-            System.out.println("PASS testBadLineFormat");
+            System.out.println("PASS testInvalidFileFormat");
         } catch (Exception e) {
-            System.out.println("FAIL testBadLineFormat: wrong exception " + e);
+            System.out.println("FAIL testInvalidFileFormat: wrong exception " + e);
         }
     }
 
@@ -107,7 +107,7 @@ public class CourseFileParserTest {
         testParseValidFile();
         testNullPath();
         testMissingFile();
-        testBadLineFormat();
+        testInvalidFileFormat();
         testSkipEmptyLines();
 
         System.out.printf("%nResult: %d / %d tests passed%n", passed, total);
