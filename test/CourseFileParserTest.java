@@ -100,6 +100,20 @@ public class CourseFileParserTest {
         }
     }
 
+    private void testInvalidGrade() {
+    	total++;
+    	try {
+    		Path invalidGradeFile = Path.of("implementation/test/course files/invalid_grade.txt");
+    		List<CourseRecord> records = parser.parse(invalidGradeFile);
+    		System.out.println("FAIL testInvalidGrade: no exception was thrown");
+    	} catch (IllegalArgumentException expected) {
+    		passed++;
+    		System.out.println("PASS testInvalidGrade");
+    	} catch (Exception e) {
+            System.out.println("FAIL testInvalidGrade: wrong exception " + e);
+        }
+    }
+
     // Run all tests
     public void runAll() {
         System.out.println("Running CourseFileParser tests…\n");
@@ -109,6 +123,7 @@ public class CourseFileParserTest {
         testMissingFile();
         testInvalidFileFormat();
         testSkipEmptyLines();
+        testInvalidGrade();
 
         System.out.printf("%nResult: %d / %d tests passed%n", passed, total);
     }
